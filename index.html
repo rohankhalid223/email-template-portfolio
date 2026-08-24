@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Email Template Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:         #060504;
+      --text:       #f0e6cc;
+      --muted:      #6b5a3e;
+      --border:     rgba(245, 158, 11, 0.13);
+      --gold:       #f59e0b;
+      --gold-light: #fde68a;
+      --gold-dim:   #d97706;
+      --shadow:     0 32px 64px rgba(0, 0, 0, 0.7);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+      background:
+        radial-gradient(72rem 52rem at -12% -18%, rgba(180, 100, 0, 0.22) 0%, transparent 55%),
+        radial-gradient(55rem 42rem at 112% -8%,  rgba(245, 158, 11, 0.12) 0%, transparent 52%),
+        var(--bg);
+    }
+
+    /* subtle noise grain */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.045;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 160px 160px;
+    }
+
+    /* dot grid fading at top */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.09) 1px, transparent 1px);
+      background-size: 30px 30px;
+      -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 0%, transparent 100%);
+      mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 0%, transparent 100%);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: min(1160px, 92%);
+      margin: 0 auto;
+      padding: 28px 0 80px;
+    }
+
+    /* ── Topbar ── */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 26px;
+    }
+
+    .brand {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c8b89a;
+    }
+    .brand em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .pill {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid rgba(245, 158, 11, 0.18);
+      border-radius: 999px;
+      padding: 6px 14px;
+      background: rgba(245, 158, 11, 0.04);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(245, 158, 11, 0.18);
+      border-radius: 26px;
+      background: linear-gradient(145deg,
+        rgba(245, 158, 11, 0.1) 0%,
+        rgba(8, 6, 4, 0.85) 45%,
+        rgba(180, 100, 0, 0.07) 100%
+      );
+      backdrop-filter: blur(20px);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+        var(--shadow);
+      padding: clamp(32px, 5vw, 54px);
+      margin-bottom: 34px;
+    }
+
+    /* inner dot grid */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.6;
+    }
+
+    /* decorative ring */
+    .hero-ring {
+      position: absolute;
+      right: -60px;
+      top: -70px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 158, 11, 0.22);
+      pointer-events: none;
+    }
+    .hero-ring::before {
+      content: '';
+      position: absolute;
+      inset: 24px;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 158, 11, 0.12);
+    }
+    .hero-ring::after {
+      content: '';
+      position: absolute;
+      inset: 54px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.06), transparent 70%);
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 2px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4.8vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -0.025em;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #ffffff 10%, #fde68a 55%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #a08b6a;
+      line-height: 1.78;
+      max-width: 660px;
+      margin-bottom: 26px;
+    }
+    .subtitle code {
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.88em;
+      color: var(--gold-light);
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 5px;
+      padding: 1px 6px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid rgba(245, 158, 11, 0.22);
+      background: rgba(245, 158, 11, 0.07);
+      color: #d9c090;
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 0.81rem;
+      font-weight: 500;
+    }
+    .chip-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 6px var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ── Section header ── */
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.25), transparent);
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+      gap: 14px;
+    }
+
+    /* ── Card ── */
+    .card {
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(255, 248, 235, 0.03);
+      backdrop-filter: blur(16px);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 184px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+      transition: transform 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+                  border-color 0.24s ease,
+                  background 0.24s ease,
+                  box-shadow 0.24s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(245,158,11,0.07), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.24s ease;
+      pointer-events: none;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(245, 158, 11, 0.5);
+      background: rgba(245, 200, 80, 0.045);
+      box-shadow:
+        0 0 0 1px rgba(245, 158, 11, 0.18),
+        0 0 48px rgba(245, 158, 11, 0.1),
+        0 24px 50px rgba(0, 0, 0, 0.6);
+    }
+    .card:hover::before { opacity: 1; }
+
+    /* ── Tags ── */
+    .tag {
+      align-self: flex-start;
+      margin-bottom: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.69rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .tag-account { color: #fde68a; border: 1px solid rgba(245,158,11,0.4);  background: rgba(245,158,11,0.13); }
+    .tag-brand   { color: #fed7aa; border: 1px solid rgba(249,115,22,0.38); background: rgba(234,88,12,0.12); }
+    .tag-news    { color: #fef3c7; border: 1px solid rgba(250,204,21,0.35); background: rgba(202,138,4,0.12); }
+    .tag-promo   { color: #fcd34d; border: 1px solid rgba(217,119,6,0.38);  background: rgba(180,83,9,0.13); }
+
+    .name {
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: #f0e2c0;
+      line-height: 1.4;
+      margin-bottom: 7px;
+    }
+
+    .path {
+      font-family: Consolas, Monaco, "Courier New", monospace;
+      font-size: 0.73rem;
+      color: #4a3e28;
+      line-height: 1.5;
+      word-break: break-all;
+      flex: 1;
+    }
+
+    .open {
+      margin-top: 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.01em;
+    }
+    .open-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    .card:hover .open-arrow { transform: translateX(5px); }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 48px;
+      text-align: center;
+      color: #3a2f1e;
+      font-size: 0.79rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .hero-ring { display: none; }
+      .grid { grid-template-columns: 1fr; }
+      .chips { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="topbar">
+      <div class="brand">Email <em>Portfolio</em></div>
+      <div class="pill">Developer Gallery</div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-ring" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Premium Email Design Collection</p>
+        <h1>Creative Template Portfolio</h1>
+        <p class="subtitle">
+          A curated gallery of production-ready HTML email designs. Click any template card
+          to preview it directly from the <code>templates/</code> folder.
+        </p>
+        <div class="chips">
+          <span class="chip"><span class="chip-dot"></span>21 Templates</span>
+          <span class="chip">Multi-Brand</span>
+          <span class="chip">Bilingual · EN / AR</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-head">
+      <span class="section-title">Template Collection</span>
+      <div class="section-line"></div>
+    </div>
+
+    <section class="grid">
+
+      <a class="card" href="./templates/flipbooking-email-pass-confirm/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-account">Account Flow</span>
+        <h3 class="name">Flipbooking — Pass Confirm</h3>
+        <p class="path">templates/flipbooking-email-pass-confirm/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/flipbooking-email-new-account/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-account">Account Flow</span>
+        <h3 class="name">Flipbooking — New Account</h3>
+        <p class="path">templates/flipbooking-email-new-account/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/flipbooking-email-reset-link/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-account">Account Flow</span>
+        <h3 class="name">Flipbooking — Reset Link</h3>
+        <p class="path">templates/flipbooking-email-reset-link/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/dacia/index.html" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-brand">Brand Campaign</span>
+        <h3 class="name">Dacia</h3>
+        <p class="path">templates/dacia/index.html</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/renault-2/index.html" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-brand">Brand Campaign</span>
+        <h3 class="name">Renault 2</h3>
+        <p class="path">templates/renault-2/index.html</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/renault/index.html" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-brand">Brand Campaign</span>
+        <h3 class="name">Renault</h3>
+        <p class="path">templates/renault/index.html</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/dacia-2/renault/index.html" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-brand">Brand Campaign</span>
+        <h3 class="name">Dacia 2 / Renault</h3>
+        <p class="path">templates/dacia-2/renault/index.html</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/Pincam-Emailer/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-news">Newsletter</span>
+        <h3 class="name">Pincam Emailer</h3>
+        <p class="path">templates/Pincam-Emailer/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/zen-led/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-news">Newsletter</span>
+        <h3 class="name">Zen LED</h3>
+        <p class="path">templates/zen-led/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/ns-g-022219-03-uae-springpromo-vl/ar/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-promo">Regional Promo</span>
+        <h3 class="name">UAE Spring Promo VL (AR)</h3>
+        <p class="path">templates/ns-g-022219-03-uae-springpromo-vl/ar/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/ns-g-022219-03-uae-springpromo-vl/en/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-promo">Regional Promo</span>
+        <h3 class="name">UAE Spring Promo VL (EN)</h3>
+        <p class="path">templates/ns-g-022219-03-uae-springpromo-vl/en/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/ns-g-022219-03-uae-springpromo-ol/ar/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-promo">Regional Promo</span>
+        <h3 class="name">UAE Spring Promo OL (AR)</h3>
+        <p class="path">templates/ns-g-022219-03-uae-springpromo-ol/ar/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/ns-g-022219-03-uae-springpromo-ol/en/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-promo">Regional Promo</span>
+        <h3 class="name">UAE Spring Promo OL (EN)</h3>
+        <p class="path">templates/ns-g-022219-03-uae-springpromo-ol/en/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/ns-g-022216-kuw-mothersday2/ar/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-promo">Regional Promo</span>
+        <h3 class="name">KUW Mother's Day 2 (AR)</h3>
+        <p class="path">templates/ns-g-022216-kuw-mothersday2/ar/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/ns-g-022216-kuw-mothersday2/en/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-promo">Regional Promo</span>
+        <h3 class="name">KUW Mother's Day 2 (EN)</h3>
+        <p class="path">templates/ns-g-022216-kuw-mothersday2/en/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/ns-g-022217-bah-springpromo/en/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-promo">Regional Promo</span>
+        <h3 class="name">BAH Spring Promo (EN)</h3>
+        <p class="path">templates/ns-g-022217-bah-springpromo/en/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/ns-g-022217-bah-springpromo/ar/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-promo">Regional Promo</span>
+        <h3 class="name">BAH Spring Promo (AR)</h3>
+        <p class="path">templates/ns-g-022217-bah-springpromo/ar/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/ns-g-022219-uae-springpromo-ol/ar/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-promo">Regional Promo</span>
+        <h3 class="name">UAE Spring Promo OL (AR)</h3>
+        <p class="path">templates/ns-g-022219-uae-springpromo-ol/ar/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/ns-g-022219-uae-springpromo-ol/en/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-promo">Regional Promo</span>
+        <h3 class="name">UAE Spring Promo OL (EN)</h3>
+        <p class="path">templates/ns-g-022219-uae-springpromo-ol/en/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/ksa-obp-temp3-22-vl/en/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-promo">Regional Promo</span>
+        <h3 class="name">KSA OBP Temp 3-22 VL (EN)</h3>
+        <p class="path">templates/ksa-obp-temp3-22-vl/en/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+      <a class="card" href="./templates/ksa-obp-temp3-22-vl/ar/index.htm" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-promo">Regional Promo</span>
+        <h3 class="name">KSA OBP Temp 3-22 VL (AR)</h3>
+        <p class="path">templates/ksa-obp-temp3-22-vl/ar/index.htm</p>
+        <span class="open">Open template <span class="open-arrow">→</span></span>
+      </a>
+
+    </section>
+
+    <footer>Crafted for quick preview access &middot; 21 production-ready email templates</footer>
+  </main>
+</body>
+</html>
