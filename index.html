@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,20 +10,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:           #09090b;
-      --surface:      rgba(255,255,255,0.026);
-      --surface-h:    rgba(99,102,241,0.045);
-      --text:         #f4f4f5;
-      --text-2:       #a1a1aa;
-      --text-3:       #52525b;
-      --border:       rgba(255,255,255,0.072);
-      --border-h:     rgba(99,102,241,0.32);
-      --indigo:       #6366f1;
-      --violet:       #8b5cf6;
-      --indigo-dim:   #818cf8;
+      --bg: #09090b;
+      --surface: rgba(255, 255, 255, 0.026);
+      --surface-h: rgba(99, 102, 241, 0.045);
+      --text: #f4f4f5;
+      --text-2: #a1a1aa;
+      --text-3: #52525b;
+      --border: rgba(255, 255, 255, 0.072);
+      --border-h: rgba(99, 102, 241, 0.32);
+      --indigo: #6366f1;
+      --violet: #8b5cf6;
+      --indigo-dim: #818cf8;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       min-height: 100vh;
@@ -42,7 +49,7 @@
       transform: translateX(-50%);
       width: 900px;
       height: 600px;
-      background: radial-gradient(ellipse at center, rgba(99,102,241,0.075) 0%, transparent 68%);
+      background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.075) 0%, transparent 68%);
       pointer-events: none;
       z-index: 0;
     }
@@ -110,7 +117,7 @@
       height: 6px;
       border-radius: 50%;
       background: #22c55e;
-      box-shadow: 0 0 0 2.5px rgba(34,197,94,0.22);
+      box-shadow: 0 0 0 2.5px rgba(34, 197, 94, 0.22);
       flex-shrink: 0;
     }
 
@@ -169,8 +176,8 @@
       font-family: "SF Mono", Consolas, Monaco, monospace;
       font-size: 0.86em;
       color: #a5b4fc;
-      background: rgba(99,102,241,0.1);
-      border: 1px solid rgba(99,102,241,0.16);
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.16);
       border-radius: 5px;
       padding: 1px 7px;
     }
@@ -245,9 +252,9 @@
       overflow: hidden;
       transition:
         border-color 0.22s ease,
-        background   0.22s ease,
-        transform    0.22s cubic-bezier(0.4,0,0.2,1),
-        box-shadow   0.22s ease;
+        background 0.22s ease,
+        transform 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.22s ease;
     }
 
     .card::after {
@@ -257,7 +264,7 @@
       left: 18%;
       right: 18%;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(99,102,241,0.65), transparent);
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.65), transparent);
       opacity: 0;
       transition: opacity 0.25s ease;
     }
@@ -267,12 +274,14 @@
       background: var(--surface-h);
       transform: translateY(-3px);
       box-shadow:
-        0 0 0 1px rgba(99,102,241,0.08),
-        0 12px 32px rgba(0,0,0,0.38),
-        0 0 50px rgba(99,102,241,0.04);
+        0 0 0 1px rgba(99, 102, 241, 0.08),
+        0 12px 32px rgba(0, 0, 0, 0.38),
+        0 0 50px rgba(99, 102, 241, 0.04);
     }
 
-    .card:hover::after { opacity: 1; }
+    .card:hover::after {
+      opacity: 1;
+    }
 
     /* ── Tags ── */
     .tag {
@@ -286,10 +295,25 @@
       text-transform: uppercase;
     }
 
-    .tag-account { color: #818cf8; background: rgba(129,140,248,0.1); }
-    .tag-brand   { color: #f472b6; background: rgba(244,114,182,0.1); }
-    .tag-news    { color: #34d399; background: rgba(52,211,153,0.1);  }
-    .tag-promo   { color: #fb923c; background: rgba(251,146,60,0.1);  }
+    .tag-account {
+      color: #818cf8;
+      background: rgba(129, 140, 248, 0.1);
+    }
+
+    .tag-brand {
+      color: #f472b6;
+      background: rgba(244, 114, 182, 0.1);
+    }
+
+    .tag-news {
+      color: #34d399;
+      background: rgba(52, 211, 153, 0.1);
+    }
+
+    .tag-promo {
+      color: #fb923c;
+      background: rgba(251, 146, 60, 0.1);
+    }
 
     .card-name {
       font-size: 0.93rem;
@@ -321,7 +345,10 @@
       transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
-    .card:hover .card-cta { opacity: 1; transform: translateX(0); }
+    .card:hover .card-cta {
+      opacity: 1;
+      transform: translateX(0);
+    }
 
     /* ── Footer ── */
     footer {
@@ -342,14 +369,30 @@
 
     /* ── Responsive ── */
     @media (max-width: 640px) {
-      .grid { grid-template-columns: 1fr; }
-      h1 { font-size: 2.4rem; }
-      .hero { padding-bottom: 52px; }
-      .topbar { margin-bottom: 52px; }
-      footer { flex-direction: column; align-items: flex-start; }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+      }
+
+      .hero {
+        padding-bottom: 52px;
+      }
+
+      .topbar {
+        margin-bottom: 52px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
+
 <body>
   <main class="container">
 
@@ -357,7 +400,8 @@
       <div class="brand">
         <div class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            <path
+              d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
           </svg>
         </div>
         <span class="brand-name">Email Portfolio</span>
@@ -379,7 +423,7 @@
         card to preview it directly from the <code>templates/</code> folder.
       </p>
       <div class="chips">
-        <span class="chip"><span class="chip-dot"></span>21 Templates</span>
+        <span class="chip"><span class="chip-dot"></span>25 Templates</span>
         <span class="chip">Multi-Brand</span>
         <span class="chip">Bilingual &middot; EN / AR</span>
       </div>
@@ -387,29 +431,60 @@
 
     <div class="section-head">
       <span class="section-label">Template Collection</span>
-      <span class="section-count">21 items</span>
+      <span class="section-count">25 items</span>
     </div>
 
     <section class="grid">
 
-      <a class="card" href="./templates/flipbooking-email-pass-confirm/index.htm" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/flipbooking-email-pass-confirm/index.htm" target="_blank"
+        rel="noopener noreferrer">
         <span class="tag tag-account">Account Flow</span>
         <h3 class="card-name">Flipbooking — Pass Confirm</h3>
         <p class="card-path">templates/flipbooking-email-pass-confirm/index.htm</p>
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/flipbooking-email-new-account/index.htm" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/flipbooking-email-new-account/index.htm" target="_blank"
+        rel="noopener noreferrer">
         <span class="tag tag-account">Account Flow</span>
         <h3 class="card-name">Flipbooking — New Account</h3>
         <p class="card-path">templates/flipbooking-email-new-account/index.htm</p>
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/flipbooking-email-reset-link/index.htm" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/flipbooking-email-reset-link/index.htm" target="_blank"
+        rel="noopener noreferrer">
         <span class="tag tag-account">Account Flow</span>
         <h3 class="card-name">Flipbooking — Reset Link</h3>
         <p class="card-path">templates/flipbooking-email-reset-link/index.htm</p>
+        <span class="card-cta">Open template →</span>
+      </a>
+
+      <a class="card" href="./templates/Coke/index.html" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-brand">Brand Campaign</span>
+        <h3 class="card-name">Coca-Cola Arena</h3>
+        <p class="card-path">templates/Coke/index.html</p>
+        <span class="card-cta">Open template →</span>
+      </a>
+
+      <a class="card" href="./templates/Coke1/index.html" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-brand">Brand Campaign</span>
+        <h3 class="card-name">Coca-Cola Arena</h3>
+        <p class="card-path">templates/Coke1/index.html</p>
+        <span class="card-cta">Open template →</span>
+      </a>
+
+      <a class="card" href="./templates/Coke2/index.html" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-brand">Brand Campaign</span>
+        <h3 class="card-name">Coca-Cola Arena</h3>
+        <p class="card-path">templates/Coke2/index.html</p>
+        <span class="card-cta">Open template →</span>
+      </a>
+
+      <a class="card" href="./templates/just-kidding-world/index.html" target="_blank" rel="noopener noreferrer">
+        <span class="tag tag-brand">Brand Campaign</span>
+        <h3 class="card-name">Coca-Cola Arena</h3>
+        <p class="card-path">templates/just-kidding-world/index.html</p>
         <span class="card-cta">Open template →</span>
       </a>
 
@@ -420,12 +495,14 @@
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/renault-2/index.html" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/dacia-2/renault/index.html" target="_blank" rel="noopener noreferrer">
         <span class="tag tag-brand">Brand Campaign</span>
-        <h3 class="card-name">Renault 2</h3>
-        <p class="card-path">templates/renault-2/index.html</p>
+        <h3 class="card-name">Dacia 2 / Renault</h3>
+        <p class="card-path">templates/dacia-2/renault/index.html</p>
         <span class="card-cta">Open template →</span>
       </a>
+
+
 
       <a class="card" href="./templates/renault/index.html" target="_blank" rel="noopener noreferrer">
         <span class="tag tag-brand">Brand Campaign</span>
@@ -434,10 +511,10 @@
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/dacia-2/renault/index.html" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/renault-2/index.html" target="_blank" rel="noopener noreferrer">
         <span class="tag tag-brand">Brand Campaign</span>
-        <h3 class="card-name">Dacia 2 / Renault</h3>
-        <p class="card-path">templates/dacia-2/renault/index.html</p>
+        <h3 class="card-name">Renault 2</h3>
+        <p class="card-path">templates/renault-2/index.html</p>
         <span class="card-cta">Open template →</span>
       </a>
 
@@ -455,70 +532,80 @@
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/ns-g-022219-03-uae-springpromo-vl/ar/index.htm" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/ns-g-022219-03-uae-springpromo-vl/ar/index.htm" target="_blank"
+        rel="noopener noreferrer">
         <span class="tag tag-promo">Regional Promo</span>
         <h3 class="card-name">UAE Spring Promo VL (AR)</h3>
         <p class="card-path">templates/ns-g-022219-03-uae-springpromo-vl/ar/index.htm</p>
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/ns-g-022219-03-uae-springpromo-vl/en/index.htm" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/ns-g-022219-03-uae-springpromo-vl/en/index.htm" target="_blank"
+        rel="noopener noreferrer">
         <span class="tag tag-promo">Regional Promo</span>
         <h3 class="card-name">UAE Spring Promo VL (EN)</h3>
         <p class="card-path">templates/ns-g-022219-03-uae-springpromo-vl/en/index.htm</p>
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/ns-g-022219-03-uae-springpromo-ol/ar/index.htm" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/ns-g-022219-03-uae-springpromo-ol/ar/index.htm" target="_blank"
+        rel="noopener noreferrer">
         <span class="tag tag-promo">Regional Promo</span>
         <h3 class="card-name">UAE Spring Promo OL (AR)</h3>
         <p class="card-path">templates/ns-g-022219-03-uae-springpromo-ol/ar/index.htm</p>
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/ns-g-022219-03-uae-springpromo-ol/en/index.htm" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/ns-g-022219-03-uae-springpromo-ol/en/index.htm" target="_blank"
+        rel="noopener noreferrer">
         <span class="tag tag-promo">Regional Promo</span>
         <h3 class="card-name">UAE Spring Promo OL (EN)</h3>
         <p class="card-path">templates/ns-g-022219-03-uae-springpromo-ol/en/index.htm</p>
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/ns-g-022216-kuw-mothersday2/ar/index.htm" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/ns-g-022216-kuw-mothersday2/ar/index.htm" target="_blank"
+        rel="noopener noreferrer">
         <span class="tag tag-promo">Regional Promo</span>
         <h3 class="card-name">KUW Mother's Day 2 (AR)</h3>
         <p class="card-path">templates/ns-g-022216-kuw-mothersday2/ar/index.htm</p>
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/ns-g-022216-kuw-mothersday2/en/index.htm" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/ns-g-022216-kuw-mothersday2/en/index.htm" target="_blank"
+        rel="noopener noreferrer">
         <span class="tag tag-promo">Regional Promo</span>
         <h3 class="card-name">KUW Mother's Day 2 (EN)</h3>
         <p class="card-path">templates/ns-g-022216-kuw-mothersday2/en/index.htm</p>
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/ns-g-022217-bah-springpromo/en/index.htm" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/ns-g-022217-bah-springpromo/en/index.htm" target="_blank"
+        rel="noopener noreferrer">
         <span class="tag tag-promo">Regional Promo</span>
         <h3 class="card-name">BAH Spring Promo (EN)</h3>
         <p class="card-path">templates/ns-g-022217-bah-springpromo/en/index.htm</p>
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/ns-g-022217-bah-springpromo/ar/index.htm" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/ns-g-022217-bah-springpromo/ar/index.htm" target="_blank"
+        rel="noopener noreferrer">
         <span class="tag tag-promo">Regional Promo</span>
         <h3 class="card-name">BAH Spring Promo (AR)</h3>
         <p class="card-path">templates/ns-g-022217-bah-springpromo/ar/index.htm</p>
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/ns-g-022219-uae-springpromo-ol/ar/index.htm" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/ns-g-022219-uae-springpromo-ol/ar/index.htm" target="_blank"
+        rel="noopener noreferrer">
         <span class="tag tag-promo">Regional Promo</span>
         <h3 class="card-name">UAE Spring Promo OL (AR)</h3>
         <p class="card-path">templates/ns-g-022219-uae-springpromo-ol/ar/index.htm</p>
         <span class="card-cta">Open template →</span>
       </a>
 
-      <a class="card" href="./templates/ns-g-022219-uae-springpromo-ol/en/index.htm" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="./templates/ns-g-022219-uae-springpromo-ol/en/index.htm" target="_blank"
+        rel="noopener noreferrer">
         <span class="tag tag-promo">Regional Promo</span>
         <h3 class="card-name">UAE Spring Promo OL (EN)</h3>
         <p class="card-path">templates/ns-g-022219-uae-springpromo-ol/en/index.htm</p>
@@ -543,9 +630,10 @@
 
     <footer>
       <span class="footer-text">Crafted for quick preview access</span>
-      <span class="footer-text">21 production-ready email templates</span>
+      <span class="footer-text">25 production-ready email templates</span>
     </footer>
 
   </main>
 </body>
+
 </html>
